@@ -57,10 +57,10 @@ void MainWindow::on_process_button_clicked()
         int runNumber = runParts.size() - 1;
         ui->log_textEdit->append(QString::number(runParts.size()));
 
-        double** MSAs = (double**)malloc(runNumber);
+        double** MSAs = (double**)calloc(runNumber,sizeof(double*));
         for(int j = 0; j < runNumber+1; j++)
-            MSAs[j] = (double*)malloc(numberOfModels);
-        QList<double> MSAs_inGenerations;
+            MSAs[j] = (double*)calloc(numberOfModels,sizeof(double));
+        QList<msa_model> MSAs_inGenerations;
 
         for(int j = 0; j < runNumber+1; j++)
             for(int k = 0; k < numberOfModels; k++)
@@ -102,17 +102,25 @@ void MainWindow::on_process_button_clicked()
                 if( msa != -1)
                 {
                     MSAs[runID][modelNumber-1] = msa;
-                    MSAs_inGenerations.append(msa);
+                    msa_model mm;
+                    mm.modelNumber = modelNumber;
+                    mm.MSA = msa;
+                    MSAs_inGenerations.append((mm));
                 }
             }
-            out <<"run"<<runID<<"=[";
-            for(int n = 0; n < MSAs_inGenerations.size();n++)
+            for(int m = 1; m < numberOfModels+1; m++)
             {
-                if(n == MSAs_inGenerations.size()-1)
-                    out<<MSAs_inGenerations.at(n)<<"];\n";
-                else
-                    out<<MSAs_inGenerations.at(n)<<" ";
+                out <<"\nrun"<<runID<<"_model"<<m<<"=[";
+                for(int n = 0; n < MSAs_inGenerations.size();n++)
+                {
+                    if(MSAs_inGenerations.at(n).modelNumber == m )
+                        out<<" "<<MSAs_inGenerations.at(n).MSA;
+
+                    if(n == MSAs_inGenerations.size()-1)
+                        out<<"];\n";
+                }
             }
+            qDebug()<<"runID: "<<runID<<"finished";
         }
 
         QStringList alphabets;
@@ -141,12 +149,13 @@ void MainWindow::on_process_button_clicked()
         QString outputLog = outputName;
         outputLog.append(" is created.");
         ui->log_textEdit->append(outputLog);
-        for(int j = 0; j < runNumber+1; j++)
-            free(MSAs[j]);
-        free(MSAs);
 
         output_file.close();
         file.close();
+
+        for(int j = 0; j < runNumber+1; j++)
+            free(MSAs[j]);
+        free(MSAs);
     }
     ui->log_textEdit->append("Process finished!");
 }

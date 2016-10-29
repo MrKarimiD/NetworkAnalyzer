@@ -7,6 +7,12 @@
 #include <QDebug>
 #include <cstdlib>
 
+struct msa_model
+{
+    int modelNumber;
+    double MSA;
+};
+
 namespace Ui {
 class MainWindow;
 }
