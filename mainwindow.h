@@ -6,12 +6,8 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <cstdlib>
-
-struct msa_model
-{
-    int modelNumber;
-    double MSA;
-};
+#include <QThread>
+#include "fileparser.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,15 +28,19 @@ private slots:
 
     void on_clear_button_clicked();
 
-    void on_add_button_clicked();
-
-    void on_reset_button_clicked();
+    void progressResult_slot(const QString &status, const int &progress);
+    void processResult_slot(const QString &status, const int &progress);
+    void onFinished();
 
 private:
     Ui::MainWindow *ui;
-    QList<QString> files;
+    fileParser* parser;
+    QThread workerThread;
+    void disableButton();
 
-    double MSA_calculator(QString data, int &modelNum);
+signals:
+    void fetchCommand(const QString &status);
+    void processCommand();
 };
 
 #endif // MAINWINDOW_H

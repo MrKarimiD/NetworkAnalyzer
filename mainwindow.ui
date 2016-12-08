@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>510</width>
-    <height>488</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>147</x>
-      <y>260</y>
+      <y>230</y>
       <width>75</width>
       <height>30</height>
      </rect>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>267</x>
-      <y>260</y>
+      <y>230</y>
       <width>75</width>
       <height>30</height>
      </rect>
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>3</x>
-      <y>95</y>
+      <y>65</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -57,22 +57,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>114</y>
+      <y>84</y>
       <width>491</width>
       <height>141</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="log_textEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>320</y>
-      <width>491</width>
-      <height>161</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -83,7 +70,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>300</y>
+      <y>264</y>
       <width>600</width>
       <height>3</height>
      </rect>
@@ -96,7 +83,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
+      <y>264</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -145,7 +132,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>94</y>
+      <y>60</y>
       <width>600</width>
       <height>3</height>
      </rect>
@@ -154,30 +141,30 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="reset_button">
+   <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>262</x>
-      <y>57</y>
-      <width>75</width>
-      <height>30</height>
+      <x>30</x>
+      <y>400</y>
+      <width>441</width>
+      <height>23</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Reset</string>
+    <property name="value">
+     <number>0</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="add_button">
+   <widget class="QLabel" name="status_label">
     <property name="geometry">
      <rect>
-      <x>142</x>
-      <y>57</y>
-      <width>75</width>
-      <height>30</height>
+      <x>20</x>
+      <y>300</y>
+      <width>471</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add</string>
+     <string>...</string>
     </property>
    </widget>
   </widget>
